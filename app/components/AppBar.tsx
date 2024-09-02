@@ -1,4 +1,5 @@
 "use client"
+import { WalletDisconnectButton, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { PrimaryButton} from "./Buttons";
 
 export const AppBar = () => {
@@ -7,8 +8,9 @@ export const AppBar = () => {
             <div className="text-2xl font-bold ">
                 <h1>D Fiver.</h1>
             </div>
-            <div className="">
-                <PrimaryButton onClick={()=>{}}>Connect Wallet</PrimaryButton>
+            <div className="flex gap-3">
+                <WalletMultiButton />
+                <WalletDisconnectButton />
             </div>
         </div>
     );

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className=" w-full flex justify-center">
       <div className="w-[1440px] flex flex-col gap-3">
-        <AppBar/>
+        
         <Hero />
         
        </div>

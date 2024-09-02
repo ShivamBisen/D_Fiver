@@ -67,7 +67,7 @@ export const Model = ({closeModel}:{closeModel:()=>void}) => {
                 {
                     inputs.map((input,index)=>{
                         return(
-                            <input className="w-full h-[40px] rounded-lg border border-gray-700 p-4 " 
+                            <input key={index} className="w-full h-[40px] rounded-lg border border-gray-700 p-4 " 
                             placeholder="Paste Image Link Here " 
                             value={input.imageUrl}
                             onChange={(e)=>handleInputChange(index,e.target.value)}

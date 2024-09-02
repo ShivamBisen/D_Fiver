@@ -29,9 +29,14 @@ const Dashboard = () => {
 
             {myTask.slice().reverse().map((task, index) => (
                 <div key={index} className="flex flex-col justify-center items-center mb-6">
-                    <h3 className="text-3xl">Task: {task.title}</h3>
+                    
+                    <h3 className="text-3xl">Task: {
+                    //@ts-ignore
+                    task.title}</h3>
                     <div className="flex flex-wrap justify-center mt-5 gap-4 w-[700px]">
-                        {task.options.map((option) => (
+                        
+                        { //@ts-ignore
+                        task.options.map((option) => (
                             <div key={option.id} className="flex flex-col justify-center items-center">
                                 <img className="w-[270px] h-[180px]" src={option.image} alt={`Option ${option.id}`} />
                                 <p className="text-lg">Votes: 100/1000 (10%)</p>

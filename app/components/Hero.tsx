@@ -44,6 +44,7 @@ export const Hero = () => {
             </div>
             <div className="flex gap-4">
                 <PrimaryButton onClick={handleNavigate}>Dashboard</PrimaryButton>
+                <PrimaryButton onClick={()=>{}}>Feed</PrimaryButton>
                 <PrimaryButton onClick={openModel}>Upload Image</PrimaryButton>
             </div>
             {isModelOpen && <Model  closeModel={closeModel} />}

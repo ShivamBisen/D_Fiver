@@ -3,8 +3,13 @@
 import { useState } from "react"
 import { PrimaryButton } from "./Buttons"
 import { Model } from "./Model"
+import { useRouter } from "next/navigation"
+
+
+
 
 export const Hero = () => {
+    const router =  useRouter()
     const [isModelOpen, setIsModelOpen] = useState<boolean>(false);
 
     const openModel = () => {
@@ -14,6 +19,10 @@ export const Hero = () => {
     const closeModel = () => {
         setIsModelOpen(false);
     }
+    const handleNavigate = () => {
+        router.push('/dashboard'); // Navigate to the Dashboard page
+    };
+
 
     return (
         <div className="h-[380px] w-full rounded-3xl bg-[#013811] flex flex-col justify-center items-center mt-10 gap-10">
@@ -34,7 +43,7 @@ export const Hero = () => {
                 ))}
             </div>
             <div className="flex gap-4">
-                <PrimaryButton onClick={() => {}}>Connect Wallet</PrimaryButton>
+                <PrimaryButton onClick={handleNavigate}>Dashboard</PrimaryButton>
                 <PrimaryButton onClick={openModel}>Upload Image</PrimaryButton>
             </div>
             {isModelOpen && <Model  closeModel={closeModel} />}

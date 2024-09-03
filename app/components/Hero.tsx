@@ -43,9 +43,18 @@ export const Hero = () => {
                 ))}
             </div>
             <div className="flex gap-4">
-                <PrimaryButton onClick={handleNavigate}>Dashboard</PrimaryButton>
-                <PrimaryButton onClick={()=>{router.push("/userFeed")}}>Feed</PrimaryButton>
-                <PrimaryButton onClick={openModel}>Upload Image</PrimaryButton>
+                div className="flex flex-col gap-3">
+                    <PrimaryButton onClick={handleNavigate}>Dashboard</PrimaryButton> 
+                    <p className="text-white">only Creator can</p>
+                </div>
+                <div className="flex flex-col gap-3">
+                    <PrimaryButton onClick={()=>{router.push("/userFeed")}}>Feed</PrimaryButton>
+                    <p className="text-white">only Worker can</p>
+                </div>
+                <div className="flex flex-col gap-3">
+                     <PrimaryButton onClick={openModel}>Upload Image</PrimaryButton>
+                    <p className="text-white">only Creator can</p>
+                </div>
             </div>
             {isModelOpen && <Model  closeModel={closeModel} />}
         </div>

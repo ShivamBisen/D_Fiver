@@ -22,7 +22,7 @@ const UserFeed = () => {
         const fetchTask = async () => {
             setLoading(true);
             try {
-                const res = await axios.get("http://localhost:3000/v1/user/taskfeed", {
+                const res = await axios.get("https://dcentralised-fiver-backend.onrender.com/v1/user/taskfeed", {
                     headers: {
                         Authorization: localStorage.getItem("token")
                     }

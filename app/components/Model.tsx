@@ -33,7 +33,7 @@ export const Model = ({closeModel}:{closeModel:()=>void}) => {
             "options": inputs
         }
 
-        const response = await axios.post("http://localhost:3000/v1/userMain/task",payload,{
+        const response = await axios.post("https://dcentralised-fiver-backend.onrender.com/v1/userMain/task",payload,{
             headers:{
                 Authorization : localStorage.getItem("token")
             }

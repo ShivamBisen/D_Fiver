@@ -9,7 +9,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchTask = async () => {
             try {
-                const tasks = await axios.get("http://localhost:3000/v1/userMain/alltasks", {
+                const tasks = await axios.get("https://dcentralised-fiver-backend.onrender.com/v1/userMain/alltasks", {
                     headers: {
                         Authorization: localStorage.getItem("token")
                     }

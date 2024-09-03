@@ -14,12 +14,12 @@ export const AppBar = () => {
         const message = new TextEncoder().encode("Hello, World!");
         const signature = await signMessage?.(message);
      
-        const response =  await axios.post("http://localhost:3000/v1/userMain/signin",{
+        const response =  await axios.post("https://dcentralised-fiver-backend.onrender.com/v1/userMain/signin",{
             signature,
             publicKey: publicKey?.toString()
         })
         console.log(response.data)
-        localStorage.setItem("token", response.data.token)
+        localStorage.setItem("token", response.data.token);
 
     }
     

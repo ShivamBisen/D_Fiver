@@ -11,7 +11,7 @@ const Dashboard = () => {
             try {
                 const tasks = await axios.get("http://localhost:3000/v1/userMain/alltasks", {
                     headers: {
-                        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEsImlhdCI6MTcyNTI3MDYwNX0.uNcdKAegVpGq1S25pqHcMlpXre7pvA4zR6HgayjsvB8"
+                        Authorization: localStorage.getItem("token")
                     }
                 });
                 setMyTask(tasks.data);

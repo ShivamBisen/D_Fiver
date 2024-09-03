@@ -24,7 +24,7 @@ const UserFeed = () => {
             try {
                 const res = await axios.get("http://localhost:3000/v1/user/taskfeed", {
                     headers: {
-                        Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEsImlhdCI6MTcyNTI4Mzc4M30.CsIAUjpahy7cfO6Nz9E3xTDfq22Mw0cg2GIGLu5ROe8"
+                        Authorization: localStorage.getItem("token")
                     }
                 });
                 setNewTask(res.data);

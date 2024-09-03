@@ -8,8 +8,7 @@ import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
     WalletModalProvider,
-    WalletDisconnectButton,
-    WalletMultiButton
+    
 } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
 
@@ -29,7 +28,7 @@ export default function RootLayout({
   const network = WalletAdapterNetwork.Devnet;
 
   // You can also provide a custom RPC endpoint.
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  const endpoint = "https://solana-devnet.g.alchemy.com/v2/sleiRD8-KgsQ_uHYmWkD095z6E8wmSaP";
 
   const wallets = useMemo(
       () => [  ],

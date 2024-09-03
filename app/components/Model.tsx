@@ -1,14 +1,19 @@
 "use client"
 import { useState } from "react"
 import { PrimaryButton, SecondaryButton } from "./Buttons"
+import { PublicKey, SystemProgram, Transaction } from '@solana/web3.js';
 import axios from "axios"
 import { headers } from "next/headers"
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 
 
 
 export const Model = ({closeModel}:{closeModel:()=>void}) => {
     const [inputs, setInputs] = useState<{imageUrl:string}[]>([{imageUrl : ""}])
     const [title, setTitle] = useState("")
+    const { publicKey, sendTransaction } = useWallet();
+    const { connection } = useConnection();
+    const [txSignature, setTxSignature] = useState("");
 
     const AddInput = () => {
         setInputs([...inputs, {imageUrl:""}])
@@ -21,16 +26,16 @@ export const Model = ({closeModel}:{closeModel:()=>void}) => {
         setInputs(newInputs)
     }
 
-    const handleSubmit = async() => {
+    const onSubmit = async() => {
         const payload = {
             "title": title,
-            "signature":"kjgfdjkfgjd",
+            "signature":txSignature,
             "options": inputs
         }
 
         const response = await axios.post("http://localhost:3000/v1/userMain/task",payload,{
             headers:{
-                Authorization : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEsImlhdCI6MTcyNTI3MDYwNX0.uNcdKAegVpGq1S25pqHcMlpXre7pvA4zR6HgayjsvB8'
+                Authorization : localStorage.getItem("token")
             }
         })
         console.log(response.data)
@@ -40,6 +45,27 @@ export const Model = ({closeModel}:{closeModel:()=>void}) => {
         console.log(inputs)
         
     }
+    async function makePayment() {
+
+        const transaction = new Transaction().add(
+            SystemProgram.transfer({
+                fromPubkey: publicKey!,
+                toPubkey: new PublicKey("2KeovpYvrgpziaDsq8nbNMP4mc48VNBVXb5arbqrg9Cq"),
+                lamports: 100000000,
+            })
+        );
+
+        const {
+            context: { slot: minContextSlot },
+            value: { blockhash, lastValidBlockHeight }
+        } = await connection.getLatestBlockhashAndContext();
+
+        const signature = await sendTransaction(transaction, connection, { minContextSlot });
+
+        await connection.confirmTransaction({ blockhash, lastValidBlockHeight, signature });
+        setTxSignature(signature);
+    }
+
 
    
 
@@ -83,7 +109,11 @@ export const Model = ({closeModel}:{closeModel:()=>void}) => {
                 </div>
                 
                 
-                <PrimaryButton onClick={handleSubmit}>Submit</PrimaryButton>
+                <div className="flex justify-center">
+            <button onClick={txSignature ? onSubmit : makePayment} type="button" className="mt-4 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                {txSignature ? "Submit Task" : "Pay 0.1 SOL"}
+            </button>
+        </div>
                 
             </div>
         </div>

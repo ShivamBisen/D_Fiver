@@ -50,7 +50,7 @@ export const Model = ({closeModel}:{closeModel:()=>void}) => {
         const transaction = new Transaction().add(
             SystemProgram.transfer({
                 fromPubkey: publicKey!,
-                toPubkey: new PublicKey("2KeovpYvrgpziaDsq8nbNMP4mc48VNBVXb5arbqrg9Cq"),
+                toPubkey: new PublicKey("2iDkXvx2oPKRvPAFCUw3TZyXqBcZBbcufkhq2ZAkxbiB"),
                 lamports: 100000000,
             })
         );
